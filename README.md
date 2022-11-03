@@ -1,12 +1,6 @@
 # kontrola_testov
 <html>
 <head>
-<style>
-img {
-  width: 200%;
-  height:200%;
-}
-</style>
 </head>
 <body>
 
@@ -56,7 +50,7 @@ Uzivatel moze vykonat niekolko akcii. Prvou z nich je nahranie odpovedi v textov
 Pristup by mal ucital a admin. Ziaci by nemali pristup, lebo by vzniklo vela problemov s unikom osobnych udajov alebo zmenou spravnych odpovedi.<br>
 Ked softver ma testy a nema odpovede, nevie precitat fotku, nema meno priradene k testu, ma odpovede a nema testy<br><br>
 </p>
-<img src="uml_graph.png" alt="UML graph">
+<img src="uml_graph.png" alt="UML graph" width="1000">
 <br><br>
 <h2>Zoznam technologii</h2>
 <p>Python, mozno C/C++<br>
