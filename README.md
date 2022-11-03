@@ -1,5 +1,13 @@
 # kontrola_testov
 <html>
+<head>
+<style>
+img {
+  width: 200%;
+  height:200%;
+}
+</style>
+</head>
 <body>
 
 <h1>School project: marking tests automatically</h1>
