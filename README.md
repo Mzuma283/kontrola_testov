@@ -62,7 +62,8 @@ https://github.com/dostuffthatmatters/IN8011-HW-AutoCorrection<br>
 https://opencv.org/ <br>
 https://docs.opencv.org/4.x/df/d0d/tutorial_find_contours.html<br>
 https://docs.opencv.org/4.x/d4/d7d/tutorial_harris_detector.html<br>
-https://docs.opencv.org/4.x/d7/dff/tutorial_feature_homography.html
+https://docs.opencv.org/4.x/d7/dff/tutorial_feature_homography.html<br>
+https://www.geeksforgeeks.org/text-detection-and-extraction-using-opencv-and-ocr/
 </p>
 <h2>Vytvorenie milestonov</h2>
 <p>Imporotvat fotku do kodu<br>
