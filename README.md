@@ -77,6 +77,8 @@ GUI?
 <p><i>Ulohou tohto programu je zjednodusit opravovanie testov ucitelom pomocou rozoznavania odpovedi vo fotkach. Vdaka tomuto by sme mali znizit chybovost a casovu narocnost tejto procedury. Pretoze na fungovanie programu nie je prioritou pekne GUI alebo GUI celkovo, je to na konci nasho priority listu. Dokym nebude program vo funkcnom a pouzivatelnom stadiu sme spokojny s pouzivatelom komunikujucim iba cez terminal. 
 V hotovom produkte by pouzivatel zadal fotky alebo scany testov na opravenie spolu s klucom. Testy mozu byt len vo vopred stanovenom formate s uzatvorenymi otazakmi. Program vie vo fotke idntifikovat meno studenta a odpovede priradene k otazkam. Programu by toto mohlo byt ulahcne pomocou qr kodu.</i>
 </p>
+<h2>How to install OpneCV:</h2>
+<p>https://www.youtube.com/watch?v=oXlwWbU8l2o&t=67s</p>
 </body>
 </html>
 
