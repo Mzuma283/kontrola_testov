@@ -41,3 +41,4 @@ cv.createTrackbar('Threshold: ', source_window, thresh, max_thresh, cornerHarris
 cv.imshow(source_window, src)
 cornerHarris_demo(thresh)
 cv.waitKey()
+#nothing

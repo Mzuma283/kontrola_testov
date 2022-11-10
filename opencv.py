@@ -1,7 +1,10 @@
 import cv2 as cv
 
-img = cv.imread('uml_graph.png')
+img = cv.imread('klokan_test.png')
 
 cv.imshow('uml_graph', img)
 
 cv.waitKey(0)
+
+
+#hey
