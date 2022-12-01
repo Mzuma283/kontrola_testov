@@ -64,7 +64,8 @@ https://docs.opencv.org/4.x/df/d0d/tutorial_find_contours.html<br>
 https://docs.opencv.org/4.x/d4/d7d/tutorial_harris_detector.html<br>
 https://docs.opencv.org/4.x/d7/dff/tutorial_feature_homography.html<br>
 https://www.geeksforgeeks.org/text-detection-and-extraction-using-opencv-and-ocr/<br>
-https://learnopencv.com/contour-detection-using-opencv-python-c/
+https://learnopencv.com/contour-detection-using-opencv-python-c/<br>
+https://www.tutorialspoint.com/how-to-compare-two-images-in-opencv-python#:~:text=Python%20%2D%20OpenCV%20%26%20PyQT5%20together&text=To%20compare%20two%20images%2C%20we,width%20and%20number%20of%20channels.
 </p>
 <h2>Vytvorenie milestonov</h2>
 <p>Imporotvat fotku do kodu<br>
