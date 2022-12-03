@@ -1,8 +1,14 @@
-#contours finding
+from __future__ import print_function
 import cv2 as cv
 import pypdfium2 as pdfium
 import numpy as np
 import matplotlib.pyplot as plt
+import sys
+PY3 = sys.version_info[0] == 3
+
+if PY3:
+    xrange = range
+
 
 # pdf = pdfium.PdfDocument("fotky\klokan_nevyplnene.pdf")
 # n_pages = len(pdf)
@@ -19,83 +25,90 @@ import matplotlib.pyplot as plt
 #     )
 #     pil_image.save(f"fotky/image_{page_number+1}.png")
 
-# image = cv.imread('fotky\image_1.png')
-
-# img_gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
-# # apply binary thresholding
-# ret, thresh = cv.threshold(img_gray, 150, 255, cv.THRESH_BINARY)
-# # visualize the binary image
-# cv.imshow('Binary image', thresh)
-# cv.waitKey(0)
-# cv.imwrite('image_thres1.jpg', thresh)
-# cv.destroyAllWindows()
-
-# img_gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
-# # apply binary thresholding
-# ret, thresh = cv.threshold(img_gray, 150, 255, cv.THRESH_BINARY)
-# # detect the contours on the binary image using cv.CHAIN_APPROX_NONE
-# contours, hierarchy = cv.findContours(image=thresh, mode=cv.RETR_TREE, method=cv.CHAIN_APPROX_NONE)
-                                      
-# # draw contours on the original image
-# image_copy = image.copy()
-# cv.drawContours(image=image_copy, contours=contours, contourIdx=-1, color=(0, 255, 0), thickness=2, lineType=cv.LINE_AA)
-                
-# # see the results
-# cv.imshow('None approximation', image_copy)
-# cv.waitKey(0)
-# cv.imwrite('contours_none_image1.jpg', image_copy)
-# cv.destroyAllWindows()
-
 # load the input images
-# img1 = cv.imread('fotky\image_1.png')
-# img2 = cv.imread('fotky\image_2.png')
+img1 = cv.imread('fotky\image_2.png')
+img2 = cv.imread('fotky\image_4.png')
 
-# # convert the images to grayscale
-# img1 = cv.cvtColor(img1, cv.COLOR_BGR2GRAY)
-# img2 = cv.cvtColor(img2, cv.COLOR_BGR2GRAY)
-
-# # define the function to compute MSE between two images
-# def mse(img1, img2):
-#    h, w = img1.shape
-#    diff = cv.subtract(img1, img2)
-#    err = np.sum(diff**2)
-#    mse = err/(float(h*w))
-#    return mse, diff
-
-# error, diff = mse(img1, img2)
-# print("Image matching Error between the two images:",error)
-
-# cv.imshow("difference", diff)
-# cv.waitKey(0)
-# cv.destroyAllWindows()
-
-
-
-img1 = cv.imread('fotky\image_1.png')
+# convert the images to grayscale
 img1 = cv.cvtColor(img1, cv.COLOR_BGR2GRAY)
-h, w = img1.shape
-
-img2 = cv.imread('panda1.jpg')
 img2 = cv.cvtColor(img2, cv.COLOR_BGR2GRAY)
-img3 = cv.imread('bike.jpg')
-img3 = cv.cvtColor(img3, cv.COLOR_BGR2GRAY)
 
-def error(img1, img2):
+# define the function to compute MSE between two images
+def mse(img1, img2):
+   h, w = img1.shape
    diff = cv.subtract(img1, img2)
    err = np.sum(diff**2)
    mse = err/(float(h*w))
-   msre = np.sqrt(mse)
    return mse, diff
 
-match_error12, diff12 = error(img1, img2)
-match_error13, diff13 = error(img1, img3)
-match_error23, diff23 = error(img2, img3)
+error, diff = mse(img1, img2)
+print("Image matching Error between the two images:",error)
 
-print("Image matching Error between image 1 and image 2:",match_error12)
-print("Image matching Error between image 1 and image 3:",match_error13)
-print("Image matching Error between image 2 and image 3:",match_error23)
+# cv.imshow("difference", diff)
+result = 'fotky/result.png'
+cv.imwrite(result, diff)
+cv.waitKey(0)
+cv.destroyAllWindows()
 
-plt.subplot(221), plt.imshow(diff12,'gray'),plt.title("image1 - Image2"),plt.axis('off')
-plt.subplot(222), plt.imshow(diff13,'gray'),plt.title("image1 - Image3"),plt.axis('off')
-plt.subplot(223), plt.imshow(diff23,'gray'),plt.title("image2 - Image3"),plt.axis('off')
-plt.show()
+image = cv.imread('fotky/result.png')
+gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
+ 
+blur = cv.GaussianBlur(gray, (11, 11), 0)
+canny = cv.Canny(blur, 30, 150, 3)
+dilated = cv.dilate(canny, (1, 1), iterations=0)
+ 
+(cnt, hierarchy) = cv.findContours(
+    dilated.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_NONE)
+rgb = cv.cvtColor(image, cv.COLOR_BGR2RGB)
+cv.drawContours(rgb, cnt, -1, (0, 255, 0), 2)
+cv.imshow('None approximation', rgb)
+cv.waitKey(0)
+cv.imwrite('contours_none_image1.jpg', rgb)
+cv.destroyAllWindows()
+ 
+ 
+print("Squares in the image : ", len(cnt-1))
+
+# def angle_cos(p0, p1, p2):
+#     d1, d2 = (p0-p1).astype('float'), (p2-p1).astype('float')
+#     return abs( np.dot(d1, d2) / np.sqrt( np.dot(d1, d1)*np.dot(d2, d2) ) )
+
+# def find_squares(img):
+#     img = cv.GaussianBlur(img, (5, 5), 0)
+#     squares = []
+#     for gray in cv.split(img):
+#         for thrs in xrange(0, 255, 26):
+#             if thrs == 0:
+#                 bin = cv.Canny(gray, 0, 50, apertureSize=5)
+#                 bin = cv.dilate(bin, None)
+#             else:
+#                 _retval, bin = cv.threshold(gray, thrs, 255, cv.THRESH_BINARY)
+#             contours, _hierarchy = cv.findContours(bin, cv.RETR_LIST, cv.CHAIN_APPROX_SIMPLE)
+#             for cnt in contours:
+#                 cnt_len = cv.arcLength(cnt, True)
+#                 cnt = cv.approxPolyDP(cnt, 0.02*cnt_len, True)
+#                 if len(cnt) == 4 and cv.contourArea(cnt) > 1000 and cv.isContourConvex(cnt):
+#                     cnt = cnt.reshape(-1, 2)
+#                     max_cos = np.max([angle_cos( cnt[i], cnt[(i+1) % 4], cnt[(i+2) % 4] ) for i in xrange(4)])
+#                     if max_cos < 0.1:
+#                         squares.append(cnt)
+#     return squares
+
+# def main():
+#     from glob import glob
+#     for fn in glob('../data/pic*.png'):
+#         img = cv.imread(fn)
+#         squares = find_squares(img)
+#         cv.drawContours( img, squares, -1, (0, 255, 0), 3 )
+#         cv.imshow('squares', img)
+#         ch = cv.waitKey()
+#         if ch == 27:
+#             break
+
+#     print('Done')
+
+
+# if __name__ == '__main__':
+#     print(__doc__)
+#     main()
+#     cv.destroyAllWindows()
