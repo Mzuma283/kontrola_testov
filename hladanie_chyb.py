@@ -4,6 +4,7 @@ import pypdfium2 as pdfium
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
+import os
 PY3 = sys.version_info[0] == 3
 
 if PY3:
@@ -61,14 +62,21 @@ dilated = cv.dilate(canny, (1, 1), iterations=0)
     dilated.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_NONE)
 rgb = cv.cvtColor(image, cv.COLOR_BGR2RGB)
 cv.drawContours(rgb, cnt, -1, (0, 255, 0), 2)
-cv.imshow('None approximation', rgb)
+# cv.imshow('None approximation', rgb)
 cv.waitKey(0)
 cv.imwrite('contours_none_image1.jpg', rgb)
 cv.destroyAllWindows()
- 
- 
-print("Squares in the image : ", len(cnt-1))
 
+count = int(len(cnt))
+count -= 1
+print("Squares in the image : ", count)
+
+try: 
+    os.remove("contours_none_image1.jpg")
+except: pass
+try: 
+    os.remove(result)
+except: pass
 # def angle_cos(p0, p1, p2):
 #     d1, d2 = (p0-p1).astype('float'), (p2-p1).astype('float')
 #     return abs( np.dot(d1, d2) / np.sqrt( np.dot(d1, d1)*np.dot(d2, d2) ) )
