@@ -21,4 +21,8 @@ for i in entries:
     result = control(test)
     print('Number of mistakes: {}'.format(result))
 
-# Medzi prazdnym a spravnym riesenim nevie najst rozdiely
+# Medzi prazdnym a spravnym riesenim nevie najst rozdiel
+
+# 1. otoceny test na fotke
+# 2. ine formaty napr. pdf
+# 3. pisat kriziky namiesto vyfarbovania
