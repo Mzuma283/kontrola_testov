@@ -6,23 +6,30 @@ import matplotlib.pyplot as plt
 import sys
 import os
 import pandas as pd
+from tkinter import Tk
 from hladanie_chyb import control
 PY3 = sys.version_info[0] == 3
 
 if PY3:
     xrange = range
 
+from tkinter.filedialog import askdirectory
+from tkinter import filedialog as fd
 
-entries = os.listdir('fotky/')
+path = askdirectory(title='Select your folder')
+print('Path: ' + path)
+
+entries = os.listdir(path)
 print(entries)
+correct = fd.askopenfilename(title='Select correct test')
+print('Correct test: ' + correct)
+exists = os.path.exists(path)
+print(exists)
+exists2 = os.path.exists(correct)
+print(exists2)
+path_str = str(path)
 for i in entries:
-    test = 'fotky/{}'.format(i)
+    test = path.format(i)
     print(test)
-    result = control(test)
+    result = control(test, correct, path)
     print('Number of mistakes: {}'.format(result))
-
-# Medzi prazdnym a spravnym riesenim nevie najst rozdiel
-
-# 1. otoceny test na fotke
-# 2. ine formaty napr. pdf
-# 3. pisat kriziky namiesto vyfarbovania
