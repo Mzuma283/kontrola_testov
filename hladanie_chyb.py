@@ -5,6 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 import os
+from tkinter import Tk
 import pandas as pd
 PY3 = sys.version_info[0] == 3
 
@@ -27,10 +28,10 @@ if PY3:
 #     )
 #     pil_image.save(f"fotky/image_{page_number+1}.png")
 
-def control(test):
+def control(test, correct, path):
     # load the input images
     img = cv.imread(test)
-    img_correct = cv.imread('fotky/image_2.png')
+    img_correct = cv.imread(correct)
     # print(img.shape) # Print image shape
     # cv.imshow("original", img)
     imgheight = img.shape[0]
@@ -48,14 +49,14 @@ def control(test):
     # cv.imshow("cropped2", cropped_image2)
     # cv.imshow("cropped3", cropped_image3)
     # Save the cropped image
-    cv.imwrite("Cropped Image.jpg", cropped_image)
-    cv.imwrite("Cropped Image2.jpg", cropped_image2)
-    cv.imwrite("Cropped Image3.jpg", cropped_image3)
+    cv.imwrite(path+"Cropped Image.jpg", cropped_image)
+    cv.imwrite(path+"Cropped Image2.jpg", cropped_image2)
+    cv.imwrite(path+"Cropped Image3.jpg", cropped_image3)
     cv.waitKey(0)
     cv.destroyAllWindows()
 
-    img1 = cv.imread('Cropped Image2.jpg')
-    img2 = cv.imread('Cropped Image3.jpg')
+    img1 = cv.imread(path+'Cropped Image2.jpg')
+    img2 = cv.imread(path+'Cropped Image3.jpg')
 
     # convert the images to grayscale
     img1 = cv.cvtColor(img1, cv.COLOR_BGR2GRAY)
@@ -73,41 +74,12 @@ def control(test):
     print("Image matching Error between the two images:",error)
 
     # cv.imshow("difference", diff)
-    result = 'fotky/result.png'
+    result = path+'fotky/result.png'
     cv.imwrite(result, diff)
     cv.waitKey(0)
     cv.destroyAllWindows()
 
-    # img1 = cv.imread('Cropped Image3.jpg')
-    # img1 = cv.cvtColor(img1, cv.COLOR_BGR2GRAY)
-    # h, w = img1.shape
-
-    # img2 = cv.imread('Cropped Image2.jpg')
-    # img2 = cv.cvtColor(img2, cv.COLOR_BGR2GRAY)
-    # img3 = cv.imread('Cropped Image4.jpg')
-    # img3 = cv.cvtColor(img3, cv.COLOR_BGR2GRAY)
-
-    # def error(img1, img2):
-    #     diff = cv.subtract(img1, img2)
-    #     err = np.sum(diff**2)
-    #     mse = err/(float(h*w))
-    #     msre = np.sqrt(mse)
-    #     return mse, diff
-
-    # match_error12, diff12 = error(img1, img2)
-    # match_error13, diff13 = error(img1, img3)
-    # match_error23, diff23 = error(img2, img3)
-
-    # print("Image matching Error between image 1 and image 2:",match_error12)
-    # print("Image matching Error between image 1 and image 3:",match_error13)
-    # print("Image matching Error between image 2 and image 3:",match_error23)
-
-    # plt.subplot(221), plt.imshow(diff12,'gray'),plt.title("image1 - Image2"),plt.axis('off')
-    # plt.subplot(222), plt.imshow(diff13,'gray'),plt.title("image1 - Image3"),plt.axis('off')
-    # plt.subplot(223), plt.imshow(diff23,'gray'),plt.title("image2 - Image3"),plt.axis('off')
-    # plt.show()
-
-    image = cv.imread('fotky/result.png')
+    image = cv.imread(path+'fotky/result.png')
     gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
     
     blur = cv.GaussianBlur(gray, (11, 11), 0)
@@ -120,26 +92,26 @@ def control(test):
     cv.drawContours(rgb, cnt, -1, (0, 255, 0), 2)
     # cv.imshow('None approximation', rgb)
     cv.waitKey(0)
-    cv.imwrite('contours_none_image1.jpg', rgb)
+    cv.imwrite(path+'contours_none_image1.jpg', rgb)
     cv.destroyAllWindows()
 
     count = int(len(cnt))
     # print("Squares in the image : ", count)
 
     try: 
-        os.remove("contours_none_image1.jpg")
+        os.remove(path+"contours_none_image1.jpg")
     except: pass
     try: 
         os.remove(result)
     except: pass
     try: 
-        os.remove("Cropped Image.jpg")
+        os.remove(path+"Cropped Image.jpg")
     except: pass
     try: 
-        os.remove("Cropped Image3.jpg")
+        os.remove(path+"Cropped Image3.jpg")
     except: pass
     try: 
-        os.remove("Cropped Image2.jpg")
+        os.remove(path+"Cropped Image2.jpg")
     except: pass
 
     return count
