@@ -69,7 +69,7 @@ https://www.tutorialspoint.com/how-to-compare-two-images-in-opencv-python#:~:tex
 </p>
 <h2>Vytvorenie milestonov</h2>
 <p>Imporotvat fotku do kodu<br>
-Zistit co je na fotje - najst okienka s odpovedou - pracujeme iba s jednou odpovedou<br>
+Zistit co je na fotke - najst okienka s odpovedou - pracujeme iba s jednou odpovedou<br>
 Zistit ktore policko je zaskrtnute<br>
 Zadat spravne odpovede + porovnat odpoved so spravnou odpovedou
 Praca s viac ako jednym polickom<br>
