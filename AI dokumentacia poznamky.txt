@@ -1,0 +1,50 @@
+types of AI:
+	1. RetinaNet
+	2. YOLOv3
+	3. TinyYOLOv3
+
+object detection: 
+
+	from imageai.Detection import ObjectDetection
+
+	detector = ObjectDetection()
+
+to start detecting - set model (types of AI)
+
+model tthat allows me to create my own image to detect:
+	imageai.Classification.Custom.ClassificationModelTrainer 
+	
+step by step guide how to create:
+
+– Create a dataset folder with the name you will like your dataset to be called (e.g pets)
+
+—In the dataset folder, create a folder by the name train
+
+– In the dataset folder, create a folder by the name test
+
+—In the train folder, create a folder for each object you want to the model to predict and give the folder a name that corresponds to the respective object name (e.g dog, cat, squirrel, snake)
+
+– In the test folder, create a folder for each object you want to the model to predict and give the folder a name that corresponds to the respective object name (e.g dog, cat, squirrel, snake)
+
+—In each folder present in the train folder, put the images of each object in its respective folder. This images are the ones to be used to train the model
+
+– To produce a model that can perform well in practical applications, I recommend you about 500 or more images per object. 1000 images per object is just great
+
+—In each folder present in the test folder, put about 100 to 200 images of each object in its respective folder. These images are the ones to be used to test the model as it trains
+
+– Once you have done this, the structure of your image dataset folder should look like below
+
+then i have to train model
+
+
+when obejct is detected it returns:
+
+hololens  :  39.69653248786926  :  [611, 74, 751, 154]
+hololens  :  87.6643180847168  :  [23, 46, 90, 79]
+hololens  :  89.25175070762634  :  [191, 66, 243, 95]
+hololens  :  64.49641585350037  :  [437, 81, 514, 133]
+hololens  :  91.78624749183655  :  [380, 113, 423, 138]
+
+
+
+the numbers in teh brackets aer coordinates for points that create a square around the detected object
