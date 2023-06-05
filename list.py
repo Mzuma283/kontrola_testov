@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import sys
 import os
 import pandas as pd
-from kontrola_ai import control
+from kontrolagpt import control
 PY3 = sys.version_info[0] == 3
 
 if PY3:
